@@ -14,20 +14,6 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
-  function getData() {
-        firebase.database().ref("/").on('value', function (snapshot) {
-              document.getElementById("output").innerHTML = "";
-              snapshot.forEach(function (childSnapshot) {
-                    childKey = childSnapshot.key;
-                    Room_names = childKey;
-                    //Start code
-
-                    //End code
-              });
-        });
-  }
-  getData();
-
   function addRoom() {
         room_name = document.getElementById("room_name").value;
 
@@ -54,6 +40,7 @@
               });
         });
   }
+  getData();
 
   function redirectToRoomName(name) {
         console.log(name);
