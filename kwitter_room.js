@@ -9,21 +9,21 @@
         messagingSenderId: "344512378706",
         appId: "1:344512378706:web:70c0606d3e625b36b82c8b",
         measurementId: "G-5YSJ92766R"
-  };
+  }
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+
+
+  user_name = localStorage.getItem("user_name");
+  document.getElementById("user_name").innerHTML = "Welcome " + user_name + "!";
 
   function addRoom() {
         room_name = document.getElementById("room_name").value;
-
         firebase.database().ref("/").child(room_name).update({
               purpose: "adding room name"
         });
-
         localStorage.setItem("room_name", room_name);
-
-        window.location = "kwitter_room.html";
+        window.location = "kwitter_page.html";
   }
 
   function getData() {
@@ -46,4 +46,10 @@
         console.log(name);
         localStorage.setItem("room_name", name);
         window.location = "kwitter_room.html";
+  }
+
+  function logout() {
+        localStorage.removeItem("user_name");
+        localStorage.removeItem("room_name");
+        window.location = "index.html";
   }
